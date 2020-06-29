@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Mukakam!!!</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="Simple Video Broadcaster">
+    <meta name="keywords" content="Video Broadcaster, JavaScript">
+    <meta name="author" content="Bagus Indrayana">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./assets/css/style.css" rel="stylesheet" />
+ 
+  </head>
+  <body>
+    <div class="fixed top-0 left-0 w-full h-full bg-blue-500 opacity-75 flex justify-center overflow-auto" >
+        {{!-- {{>nav}} --}}
+        {{{body}}}
+    </div>
+    <script src="https://js.pusher.com/6.0/pusher.min.js"></script>
+    <script>
+
+      const username = `{{username}}`;
+      let roomID = `{{roomID}}`;
+      function getParameterByName(name, url) {
+          if (!url) url = window.location.href;
+          name = name.replace(/[\[\]]/g, '\\$&');
+          var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+              results = regex.exec(url);
+          if (!results) return null;
+          if (!results[2]) return '';
+          return decodeURIComponent(results[2].replace(/\+/g, ' '));
+      }
+
+      if(roomID == ""){
+        roomID = getParameterByName("id")
+      }
+
+      localStorage.setItem("roomID", roomID);
+
+      var openmodal = document.querySelectorAll('.modal-open')
+      for (var i = 0; i < openmodal.length; i++) {
+        openmodal[i].addEventListener('click', function(event){
+        event.preventDefault()
+        toggleModal()
+        })
+      }
+    
+    const overlay = document.querySelector('.modal-overlay')
+    if(overlay){
+      overlay.addEventListener('click', toggleModal)
+    
+      var closemodal = document.querySelectorAll('.modal-close')
+      for (var i = 0; i < closemodal.length; i++) {
+        closemodal[i].addEventListener('click', toggleModal)
+      }
+      
+      document.onkeydown = function(evt) {
+        evt = evt || window.event
+        var isEscape = false
+        if ("key" in evt) {
+        isEscape = (evt.key === "Escape" || evt.key === "Esc")
+        } else {
+        isEscape = (evt.keyCode === 27)
+        }
+        if (isEscape && document.body.classList.contains('modal-active')) {
+        toggleModal()
+        }
+      };
+    }
+    
+    
+    
+    function toggleModal () {
+      const body = document.querySelector('body')
+      const modal = document.querySelector('.modal')
+      modal.classList.toggle('opacity-0')
+      modal.classList.toggle('pointer-events-none')
+      body.classList.toggle('modal-active')
+    }
+      
+    </script>
+    {{#each scripts}}
+      <script src="{{script}}"></script>
+    {{/each}}
+  </body>
+</html>

@@ -1,0 +1,40 @@
+<div class="w-full rounded overflow-y-auto bg-white m-4 shadow-lg">
+  
+  <div class="px-6 py-4">
+    <div class="font-bold text-xl mb-2">Watch Broadcaster</div>
+    <div class="w-full mb-4">
+      <span class="inline-block bg-blue-200 rounded-full px-3 py-1 text-sm font-semibold  mr-2"><a href="/home">Back To Home</a></span>
+    </div>
+    <div class="flex w-full">
+      
+      <div class="w-2/3">
+        <video playsinline autoplay></video>
+      </div>
+      <div class="w-1/3" id="tabs-id">
+        <ul class="flex border-b">
+          <li class="-mb-px mr-1">
+            <a class="bg-white inline-block border-l border-t border-r rounded-t py-2 px-4 hover:text-blue-800 text-blue-700 font-semibold" href="#chat" onclick="changeAtiveTab(event,'tab-chat')">Chat</a>
+          </li>
+          <li class="mr-1">
+            <a class="bg-white inline-block py-2 px-4 hover:text-blue-800 font-semibold" href="#people" onclick="changeAtiveTab(event,'tab-people')">People</a>
+          </li>
+        </ul>
+        <div class="w-full tab-content tab-space">
+          <div class="block" id="tab-chat">
+            <ul id="list-message">
+
+            </ul>
+          </div>
+          <div class="hidden" id="tab-people">
+            <ul>
+              <li>Still Empty</li>
+            </ul>
+          </div>
+        </div>
+        
+      </div>
+      
+    </div>
+  </div>
+  
+</div>
