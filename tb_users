@@ -1,0 +1,27 @@
+-- -------------------------------------------------------------
+-- TablePlus 3.6.1(320)
+--
+-- https://tableplus.com/
+--
+-- Database: db_mukakam
+-- Generation Time: 2020-06-30 08:39:39.8280
+-- -------------------------------------------------------------
+
+
+-- This script only contains the table creation statements and does not fully represent the table in the database. It's still missing: indices, triggers. Do not use it as a backup.
+
+-- Sequence and defined type
+CREATE SEQUENCE IF NOT EXISTS tb_users_id_seq;
+
+-- Table Definition
+CREATE TABLE "public"."tb_users" (
+    "id" int4 NOT NULL DEFAULT nextval('tb_users_id_seq'::regclass),
+    "username" varchar(30),
+    "password" varchar(30),
+    PRIMARY KEY ("id")
+);
+
+INSERT INTO "public"."tb_users" ("id", "username", "password") VALUES
+('1', 'bagusindrayana', 'bagus1234'),
+('2', 'test', 'test'),
+('3', 'hubla', 'hubla');
